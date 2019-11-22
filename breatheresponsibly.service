@@ -1,0 +1,26 @@
+# Install:
+#    sudo ln -s `pwd`/breatheresponsibly.service /lib/systemd/system
+#    sudo systemctl daemon-reload
+#
+# Start on each boot:
+#    sudo systemctl enable breatheresponsibly.service
+#
+# Start right now:
+#    sudo systemctl start breatheresponsibly.service
+
+[Unit]
+Description=Breathe Responsibly Service
+Wants=network-online.target
+After=network-online.target
+Wants=systemd-timesyncd.service
+After=systemd-timesyncd.service
+
+[Service]
+Environment=DISPLAY=:0
+Type=simple
+Restart=always
+User=pi
+ExecStart=/usr/bin/python3 -u /home/pi/breatheresponsibly/br_script.py
+
+[Install]
+WantedBy=multi-user.target
