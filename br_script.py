@@ -10,8 +10,6 @@ def main():
             print('ON')
             board.led.state = Led.ON
             board.button.wait_for_release()
-            print('OFF')
-            board.led.state = Led.OFF
             # Generates a random number between 
             # a given positive range 
             r1 = random.randint(1, 6) 
@@ -19,6 +17,8 @@ def main():
             wav = "/home/pi/breatheresponsibly/%s.wav" % r1
             print(wav)
             play_wav(wav)
+            print('OFF')
+            board.led.state = Led.OFF
 
 
 if __name__ == '__main__':
